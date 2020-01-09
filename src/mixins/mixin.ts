@@ -7,7 +7,7 @@ declare module 'vue/types/vue' {
   }
 }
 
-@Component
+@Component({})
 export default class Mixin extends Vue {
   // 仿elementUi
   // 向上逐级查询，执行目标组件挂载方法

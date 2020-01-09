@@ -8,7 +8,7 @@ const service = axios.create({
   timeout: 6000 // 请求超时时间
 })
 
-const err = error => {
+const err = (error: any) => {
   if (error.response) {
     const { status, data } = error.response
     if (status === 400 || status === 403 || status === 404 || status === 500 || status === 999) {
@@ -21,7 +21,7 @@ const err = error => {
 }
 
 // request interceptor
-service.interceptors.request.use(config => {
+service.interceptors.request.use((config: Object) => {
   console.log(config)
   // const token = Vue.ls.get(ACCESS_TOKEN)
   // if (token) {
@@ -31,7 +31,7 @@ service.interceptors.request.use(config => {
 }, err)
 
 // response interceptor
-service.interceptors.response.use(response => {
+service.interceptors.response.use((response: any) => {
   if (!response.data) {
     response.data = {
       status: -1,
@@ -40,14 +40,14 @@ service.interceptors.response.use(response => {
     }
   }
   if (response.data.status !== 0) {
-    console.log(response.message)
+    console.log(response.data.message)
   }
   return response.data
 }, err)
 
 const installer = {
   vm: {},
-  install(Vue) {
+  install(Vue: any) {
     Vue.use(VueAxios, service)
   }
 }

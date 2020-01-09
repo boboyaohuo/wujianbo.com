@@ -1,7 +1,8 @@
 const VueAxios = {
   vm: {},
+  installed: false,
   // eslint-disable-next-line no-unused-vars
-  install(Vue, instance) {
+  install(Vue: any, instance: any) {
     if (this.installed) {
       return
     }

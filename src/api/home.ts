@@ -1,15 +1,15 @@
 import { axios } from '@/utils/request'
-import qs from 'qs'
+// import qs from 'qs'
 
 /**
  *
  * @param parameter
  * @returns {*}
  */
-export function login(parameter) {
+export function login(parameter: object) {
   return axios({
     url: 'https://www.baidu.com/sugrec',
-    method: 'get',
-    params: parameter
+    method: 'POST',
+    data: parameter
   })
 }

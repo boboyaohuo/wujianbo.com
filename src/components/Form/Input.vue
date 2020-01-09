@@ -4,9 +4,10 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Inject, Watch, Emit, Vue } from 'vue-property-decorator'
-import Mixin from '@/mixins/mixin'
+import Mixin from '@/mixins/mixin.ts'
 
 @Component({
+  name: 'BInput',
   mixins: [Mixin]
 })
 export default class BInput extends Vue {

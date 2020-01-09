@@ -6,7 +6,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Swiper from '@/components/Swiper/Swiper.vue'
-import { login } from '@/api/home.js'
+import { login } from '@/api/home.ts'
 
 @Component({
   components: {
@@ -15,7 +15,7 @@ import { login } from '@/api/home.js'
 })
 export default class Home extends Vue {
   mounted() {
-    login({ token: 'hah' })
+    login({ wd: '阿哲' })
   }
 }
 </script>

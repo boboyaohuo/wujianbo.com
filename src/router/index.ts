@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Home from '../views/Home/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -11,7 +12,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/Home/Home.vue')
+    component: Home
   },
   {
     path: '/form',

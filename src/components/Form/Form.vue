@@ -5,7 +5,9 @@
 <script lang="ts">
 import { Component, Prop, Provide, Vue } from 'vue-property-decorator'
 
-@Component
+@Component({
+  name: 'BForm'
+})
 export default class BForm extends Vue {
   @Prop() private model!: Object
   @Prop() private rules!: Object

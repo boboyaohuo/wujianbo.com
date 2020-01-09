@@ -16,6 +16,7 @@ import BFormItem from '@/components/Form/FormItem.vue'
 import BInput from '@/components/Form/Input.vue'
 
 @Component({
+  name: 'Form',
   components: {
     BForm,
     BFormItem,

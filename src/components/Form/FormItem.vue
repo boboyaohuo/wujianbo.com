@@ -6,10 +6,11 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Inject, Vue } from 'vue-property-decorator'
-import Mixin from '@/mixins/mixin'
+import Mixin from '../../mixins/mixin'
 import AsyncValidator from 'async-validator'
 
 @Component({
+  name: 'BFormItem',
   mixins: [Mixin]
 })
 export default class BFormItem extends Vue {
@@ -68,12 +69,14 @@ export default class BFormItem extends Vue {
    * @param callback 回调函数
    */
   validate(trigger: any, cb?: Function) {
+    console.log(1)
     let rules = this.getFilteredRule(trigger)
     if (!rules || rules.length === 0) return true
     // 使用 async-validator
     const validator = new AsyncValidator({ [this.prop]: rules })
     let model = { [this.prop]: this.fieldValue }
     validator.validate(model, { firstFields: true }, errors => {
+      console.log(2)
       this.isShowMes = errors ? true : false
       this.message = errors ? errors[0].message : ''
       if (cb) cb(this.message)
@@ -84,6 +87,7 @@ export default class BFormItem extends Vue {
     this.form.model[this.prop] = this.initialValue
   }
   onFieldBlur() {
+    console.log('blur')
     this.validate('blur')
   }
   onFieldChange() {
