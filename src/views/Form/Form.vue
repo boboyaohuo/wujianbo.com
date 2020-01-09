@@ -1,17 +1,13 @@
-<template>
-  <div class="home">
-    <h3>Form (校验表单)</h3>
-    <b-form ref="form" :model="formData" :rules="rules">
-      <b-form-item label="名称：" prop="name">
-        <b-input v-model="formData.name" />
-      </b-form-item>
-      <b-form-item label="邮箱：" prop="mail">
-        <b-input v-model="formData.mail" />
-      </b-form-item>
-      <button @click="handleSubmit">提交</button>
-      <button @click="handleReset">重置</button>
-    </b-form>
-  </div>
+<template lang="pug">
+  .home
+    h3 Form (校验表单)
+    b-form(ref="form" :model="formData" :rules="rules")
+      b-form-item(label="名称：" prop="name")
+        b-input(v-model="formData.name")
+      b-form-item(label="邮箱：" prop="mail")
+        b-input(v-model="formData.mail")
+      button(@click="handleSubmit") 提交
+      button(@click="handleReset") 重置
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
@@ -40,13 +36,13 @@ export default class Form extends Vue {
     ]
   }
 
-  handleSubmit() {
+  private handleSubmit(): void {
     this.$refs.form.validate((valid: any) => {
       if (valid) console.log('提交成功')
       else console.log('校验失败')
     })
   }
-  handleReset() {
+  private handleReset(): void {
     this.$refs.form.resetFields()
   }
 }

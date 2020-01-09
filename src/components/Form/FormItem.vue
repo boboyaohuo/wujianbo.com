@@ -1,26 +1,26 @@
-<template>
-  <div>
-    <label :for="labelFor" v-if="label" :class="{ 'label-required': isRequired }">{{ label }}</label>
-    <slot></slot>
-    <div v-if="isShowMes" class="message">{{ message }}</div>
-  </div>
+<template lang="pug">
+  div
+    label(:for="labelFor" v-if="label" :class="{ 'label-required': isRequired }") {{ label }}
+    slot
+    .message(v-if="isShowMes") {{ message }}
 </template>
 <script lang="ts">
 import { Component, Prop, Inject, Vue } from 'vue-property-decorator'
-import Mixin from '@/mixin/mixin'
+import Mixin from '@/mixins/mixin'
 import AsyncValidator from 'async-validator'
 
 @Component({
   mixins: [Mixin]
 })
 export default class BFormItem extends Vue {
-  @Inject() readonly form!: Object
+  @Inject() readonly form!: any
 
   @Prop() private label!: string
   @Prop() private prop!: string
 
   isRequired: Boolean = false
   isShowMes: Boolean = false
+  initialValue: any = ''
   message: string = ''
   labelFor: string = 'input' + new Date().valueOf()
 
@@ -34,7 +34,7 @@ export default class BFormItem extends Vue {
   }
 
   // 组件销毁前，将实例从 Form 的缓存中移除
-  beforeDestroy() {
+  private beforeDestroy(): void {
     this.dispatch('BForm', 'form-remove', this)
   }
 
@@ -42,7 +42,7 @@ export default class BFormItem extends Vue {
     return this.form.model[this.prop]
   }
 
-  setRules() {
+  private setRules(): void {
     let rules = this.getRules()
     if (rules.length) {
       rules.forEach((rule: any) => {
@@ -67,7 +67,7 @@ export default class BFormItem extends Vue {
    * @param trigger 触发校验类型
    * @param callback 回调函数
    */
-  validate(trigger: any, cb: Function) {
+  validate(trigger: any, cb?: Function) {
     let rules = this.getFilteredRule(trigger)
     if (!rules || rules.length === 0) return true
     // 使用 async-validator

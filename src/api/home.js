@@ -10,6 +10,6 @@ export function login(parameter) {
   return axios({
     url: 'https://www.baidu.com/sugrec',
     method: 'get',
-    data: qs.stringify(parameter)
+    params: parameter
   })
 }

@@ -1,7 +1,6 @@
-<template>
-  <div>
-    <slot></slot>
-  </div>
+<template lang="pug">
+  div
+    slot
 </template>
 <script lang="ts">
 import { Component, Prop, Provide, Vue } from 'vue-property-decorator'

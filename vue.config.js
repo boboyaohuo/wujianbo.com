@@ -40,6 +40,13 @@ const vueConfig = {
   chainWebpack: config => {
     config.resolve.alias.set('@', resolve('src'))
 
+    config.module
+      .rule('pug')
+      .test(/\.pug$/)
+      .use('pug-html-loader')
+      .loader('pug-html-loader')
+      .end()
+
     // if prod is on
     // assets require on cdn
     if (isProd) {
