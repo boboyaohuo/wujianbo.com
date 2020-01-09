@@ -1,30 +1,39 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home/Home.vue'
+import page from './page'
+import Component from 'vue-class-component'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '*',
-    redirect: { name: 'home' }
-  },
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/form',
-    name: 'form',
-    component: () => import('@/views/Form/Form.vue')
-  }
-]
+Component.registerHooks([
+  'beforeRouteEnter', //进入路由之前
+  'beforeRouteLeave', //离开路由之前
+  'beforeRouteUpdate'
+])
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes: [...page],
+  scrollBehavior(to: any, from: any, savedPosition: any) {
+    // 切换路由后滚动到顶部或者锚点
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      if (from.meta.keepAlive) {
+        from.meta.savedPosition = document.body.scrollTop
+      }
+      return { x: 0, y: to.meta.savedPosition || 0 }
+    }
+  }
+})
+
+router.beforeEach((to: any, from: any, next: any) => {
+  if (to.meta.title) {
+    // 设置title
+    document.title = to.meta.title
+  }
+  next()
 })
 
 export default router
