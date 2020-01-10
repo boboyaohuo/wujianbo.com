@@ -4,6 +4,4 @@
   </div>
 </template>
 
-<style lang="stylus">
-@import "assets/css/main.css";
-</style>
+<style lang="stylus"></style>

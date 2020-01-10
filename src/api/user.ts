@@ -7,9 +7,8 @@ import { axios } from '@/utils/request'
  * @returns {*}
  */
 export function login(parameter: object) {
-  return axios({
-    url: 'https://www.baidu.com/sugrec',
-    method: 'POST',
-    data: parameter
+  return new Promise((resolve: any, reject: any) => {
+    const res: any = { status: 0, data: { token: 'token' } }
+    resolve(res)
   })
 }

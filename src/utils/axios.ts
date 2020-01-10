@@ -1,3 +1,4 @@
+// 将axios挂载到vue的原形上 通过this.axios or this.$http调用
 const VueAxios = {
   vm: {},
   installed: false,

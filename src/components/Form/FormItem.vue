@@ -54,7 +54,6 @@ export default class BFormItem extends Vue {
     this.$on('form-change', this.onFieldChange)
   }
   getRules() {
-    console.log(this.form)
     let formRules = this.form.rules
     formRules = formRules ? formRules[this.prop] : []
     return formRules

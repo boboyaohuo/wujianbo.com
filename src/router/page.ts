@@ -9,10 +9,11 @@ const Form = () => import('@/views/Form/Form.vue')
 
 export default [
   // 找不到重定向
-  { path: '*', redirect: '/NotFound' },
+  { path: '*', redirect: '/notfound' },
   // 404
-  { path: '/NotFound', name: 'NotFound', component: NotFound, meta: { title: '页面找不到啦' } },
+  { path: '/notfound', name: 'NotFound', component: NotFound, meta: { title: '页面找不到啦' } },
   //首页
+  { path: '/index', redirect: '/' },
   { path: '/', name: 'Index', component: Index },
   // form表单
   { path: '/form', name: 'Form', component: Form, meta: { title: 'form表单' } }
