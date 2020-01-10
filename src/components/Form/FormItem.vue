@@ -19,11 +19,11 @@ export default class BFormItem extends Vue {
   @Prop() private label!: string
   @Prop() private prop!: string
 
-  isRequired: Boolean = false
-  isShowMes: Boolean = false
-  initialValue: any = ''
-  message: string = ''
-  labelFor: string = 'input' + new Date().valueOf()
+  private isRequired: Boolean = false
+  private isShowMes: Boolean = false
+  private initialValue: any = ''
+  private message: string = ''
+  private labelFor: string = 'input' + new Date().valueOf()
 
   mounted() {
     if (this.prop) {
@@ -54,6 +54,7 @@ export default class BFormItem extends Vue {
     this.$on('form-change', this.onFieldChange)
   }
   getRules() {
+    console.log(this.form)
     let formRules = this.form.rules
     formRules = formRules ? formRules[this.prop] : []
     return formRules

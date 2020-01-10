@@ -31,7 +31,9 @@ const router = new VueRouter({
 router.beforeEach((to: any, from: any, next: any) => {
   if (to.meta.title) {
     // 设置title
-    document.title = to.meta.title
+    document.title = `${to.meta.title}-波`
+  } else {
+    document.title = '波'
   }
   next()
 })

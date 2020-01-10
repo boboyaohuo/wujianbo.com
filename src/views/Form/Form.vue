@@ -28,8 +28,8 @@ export default class Form extends Vue {
     form: BForm
   }
 
-  formData: Object = { name: '', mail: '' }
-  rules: Object = {
+  private formData: Object = { name: '', mail: '' }
+  private rules: Object = {
     name: [{ required: true, message: '不能为空', trigger: 'blur' }],
     mail: [
       { required: true, message: '不能为空', trigger: 'blur' },

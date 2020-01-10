@@ -9,17 +9,17 @@ import { Component, Prop, Provide, Vue } from 'vue-property-decorator'
   name: 'BForm'
 })
 export default class BForm extends Vue {
+  @Provide() form = this
+
   @Prop() private model!: Object
   @Prop() private rules!: Object
 
-  fields: Array<any> = []
+  public fields: Array<any> = []
 
-  @Provide() form = this
-
-  resetFields() {
+  public resetFields(): void {
     this.fields.forEach(field => field.resetField())
   }
-  validate(cb: Function) {
+  public validate(cb: Function): any {
     return new Promise(resolve => {
       let valid = true,
         count = 0
@@ -35,7 +35,7 @@ export default class BForm extends Vue {
     })
   }
 
-  created() {
+  private created(): void {
     this.$on('form-add', (field: any) => {
       if (field) this.fields.push(field)
     })

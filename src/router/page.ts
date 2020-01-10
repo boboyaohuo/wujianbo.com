@@ -13,7 +13,7 @@ export default [
   // 404
   { path: '/NotFound', name: 'NotFound', component: NotFound, meta: { title: '页面找不到啦' } },
   //首页
-  { path: '/', name: 'Index', component: Index, meta: { title: '波波要火' } },
+  { path: '/', name: 'Index', component: Index },
   // form表单
   { path: '/form', name: 'Form', component: Form, meta: { title: 'form表单' } }
 ]
