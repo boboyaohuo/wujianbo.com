@@ -9,7 +9,7 @@ const app = {
   },
   mutations: {
     TOGGLE_THEME: (state: any, theme: string) => {
-      Vue.ls.set(DEFAULT_THEME, theme)
+      (Vue as any).$ls.set(DEFAULT_THEME, theme)
       state.theme = theme
     }
   }

@@ -14,11 +14,13 @@ const user = namespace('user')
   name: 'Index'
 })
 export default class Index extends Vue {
-  @user.State token: string | number
-  @Getter tokenB: string | number
-  @user.Action Login: () => any
+  @user.State token?: string | number
+  @Getter tokenB?: string | number
+  @user.Action Login?: () => any
   async mounted() {
-    this.Login()
+    let that: any = this
+    that
+      .Login()
       .then((res: any) => {
         this.$notify({
           title: `${timeFix()}`,

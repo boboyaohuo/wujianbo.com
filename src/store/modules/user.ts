@@ -18,9 +18,8 @@ const user: any = {
       return new Promise((resolve, reject) => {
         login(userInfo)
           .then((response: any) => {
-            const result = response.data
-            Vue.$ls.set(ACCESS_TOKEN, result.token, 7 * 24 * 60 * 60 * 1000)
-            commit('SET_TOKEN', result.token)
+            (Vue as any).$ls.set(ACCESS_TOKEN, response.data.token, 7 * 24 * 60 * 60 * 1000)
+            commit('SET_TOKEN', response.data.token)
             resolve()
           })
           .catch(error => {
