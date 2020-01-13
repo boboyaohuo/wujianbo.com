@@ -7,8 +7,7 @@ Vue.use(VueRouter)
 
 Component.registerHooks([
   'beforeRouteEnter', //进入路由之前
-  'beforeRouteLeave', //离开路由之前
-  'beforeRouteUpdate'
+  'beforeRouteLeave' //离开路由之前
 ])
 
 const router = new VueRouter({

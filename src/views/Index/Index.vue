@@ -18,8 +18,7 @@ export default class Index extends Vue {
   @Getter tokenB?: string | number
   @user.Action Login?: () => any
   async mounted() {
-    let that: any = this
-    that
+    (this as any)
       .Login()
       .then((res: any) => {
         this.$notify({

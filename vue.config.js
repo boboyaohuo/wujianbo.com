@@ -14,15 +14,15 @@ const assetsCDN = {
     vue: 'Vue',
     'vue-router': 'VueRouter',
     vuex: 'Vuex',
-    axios: 'axios',
-    'element-ui': 'element-ui'
+    // axios: 'axios', // 暂时注掉，目前外链时需要webpack处理 并不减少js体积
+    'element-ui': 'ELEMENT'
   },
   css: ['//cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css'],
   js: [
     '//cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js',
     '//cdn.jsdelivr.net/npm/vue-router@3.1.3/dist/vue-router.min.js',
     '//cdn.jsdelivr.net/npm/vuex@3.1.2/dist/vuex.min.js',
-    '//cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.min.js',
+    // '//cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.min.js',
     '//cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js'
   ]
 }
@@ -33,7 +33,7 @@ const vueConfig = {
     // webpack plugins
     plugins: [
       // Ignore all locale files of moment.js
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
       // G-zip设置
       // new compressionPlagin({
       //   test: /\.js$|\.css/, // 匹配文件名
@@ -42,7 +42,8 @@ const vueConfig = {
       // })
     ],
     // if prod, add externals
-    externals: isProd ? assetsCDN.externals : {}
+    externals: isProd ? assetsCDN.externals : {},
+    devtool: isProd ? '#hidden-source-map' : '#cheap-module-eval-source-map'
   },
 
   chainWebpack: config => {
