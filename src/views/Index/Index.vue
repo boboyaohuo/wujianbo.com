@@ -36,5 +36,5 @@ export default class Index extends Vue {
 .content
   width: 100vw
   height: 100vh
-  background: url('http://uploads.5068.com/allimg/151105/48-1511051J947-51.jpg') no-repeat center center/cover
+  background: url('https://uploads.5068.com/allimg/151105/48-1511051J947-51.jpg') no-repeat center center/cover
 </style>

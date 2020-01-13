@@ -6,8 +6,7 @@ import store from './store'
 // 引入全局样式
 import '@/assets/style/reset.css'
 
-// element-ui 按需加载
-import 'element-ui/lib/theme-chalk/index.css'
+// element-ui 按需加载 css文件在cdn引入
 import '@/core/element-ui-use.ts'
 
 // 引入vue.$ls

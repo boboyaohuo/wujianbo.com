@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+// const compressionPlagin = require('compression-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -13,15 +14,16 @@ const assetsCDN = {
     vue: 'Vue',
     'vue-router': 'VueRouter',
     vuex: 'Vuex',
-    axios: 'axios'
+    axios: 'axios',
+    'element-ui': 'element-ui'
   },
-  css: [],
-  // https://unpkg.com/browse/vue@2.6.10/
+  css: ['//cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css'],
   js: [
     '//cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js',
     '//cdn.jsdelivr.net/npm/vue-router@3.1.3/dist/vue-router.min.js',
     '//cdn.jsdelivr.net/npm/vuex@3.1.2/dist/vuex.min.js',
-    '//cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.min.js'
+    '//cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.min.js',
+    '//cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js'
   ]
 }
 
@@ -31,7 +33,13 @@ const vueConfig = {
     // webpack plugins
     plugins: [
       // Ignore all locale files of moment.js
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      // G-zip设置
+      // new compressionPlagin({
+      //   test: /\.js$|\.css/, // 匹配文件名
+      //   threshold: 10240, // 超过10k的数据进行压缩
+      //   deleteOriginalAssets: false // 是否删除源文件
+      // })
     ],
     // if prod, add externals
     externals: isProd ? assetsCDN.externals : {}
