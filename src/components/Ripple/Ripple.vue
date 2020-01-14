@@ -14,7 +14,7 @@ export default class Ripple extends Vue {
     let button:any = e.target
     let ripple:any = this.$refs.rippleMask
     if (ripple) {
-      let d:number = parseInt(Math.sqrt(Math.pow(button.offsetHeight, 2) + Math.pow(button.offsetWidth, 2)))
+      let d:number = Math.sqrt(Math.pow(button.offsetHeight, 2) + Math.pow(button.offsetWidth, 2))
       let x:number = e.layerX - d / 2
       let y:number = e.layerY - d / 2
       ripple.setAttribute('style', 'height: ' + d + 'px; width: ' + d + 'px; top: ' + y + 'px; left: ' + x + 'px;')
