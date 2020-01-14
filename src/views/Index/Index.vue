@@ -1,5 +1,7 @@
 <template lang="pug">
   .content
+    .header wujianbo
+    .ha fdf
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
@@ -18,6 +20,7 @@ export default class Index extends Vue {
   @Getter tokenB?: string | number
   @user.Action Login?: () => any
   async mounted() {
+    // welcome
     (this as any)
       .Login()
       .then((res: any) => {
@@ -32,8 +35,16 @@ export default class Index extends Vue {
 }
 </script>
 <style lang="stylus" scoped>
+@import '../../assets/style/variable.styl'
+
 .content
-  width: 100vw
-  height: 100vh
-  background: url('https://uploads.5068.com/allimg/151105/48-1511051J947-51.jpg') no-repeat center center/cover
+  width 100%
+  height 100%
+  .header
+    width 100%
+    height 100%
+    line-height 100vh
+    text-align center
+    color $color-A
+    font-size 32px
 </style>
