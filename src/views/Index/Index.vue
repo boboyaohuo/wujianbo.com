@@ -20,7 +20,7 @@ const user = namespace('user')
   }
 })
 export default class Index extends Vue {
-  $refs!:{
+  $refs!: {
     ripple: Ripple
   }
   @user.State token?: string | number
@@ -41,7 +41,7 @@ export default class Index extends Vue {
       .catch((res: any) => {})
   }
 
-  headerClick(event) {
+  headerClick(event:any) {
     this.$refs.ripple.reppleClick(event)
   }
 }
