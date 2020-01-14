@@ -1,5 +1,4 @@
-import { axios } from '@/utils/request'
-// import qs from 'qs'
+import { get } from '@/utils/request'
 
 /**
  *

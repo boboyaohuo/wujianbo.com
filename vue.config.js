@@ -27,6 +27,10 @@ const assetsCDN = {
   ]
 }
 
+const assetsCDN_dev = {
+  css: ['//cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css']
+}
+
 // vue.config.js
 const vueConfig = {
   configureWebpack: {
@@ -61,6 +65,11 @@ const vueConfig = {
     if (isProd) {
       config.plugin('html').tap(args => {
         args[0].cdn = assetsCDN
+        return args
+      })
+    } else {
+      config.plugin('html').tap(args => {
+        args[0].cdn = assetsCDN_dev
         return args
       })
     }

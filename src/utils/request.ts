@@ -1,6 +1,7 @@
 // import Vue from 'vue'
 import axios from 'axios'
-import { VueAxios } from './axios'
+import qs from 'qs'
+
 // 创建 axios 实例
 const service = axios.create({
   baseURL: '',
@@ -23,7 +24,7 @@ const err = (error: any) => {
 // request interceptor
 service.interceptors.request.use((config: Object) => {
   console.log(config)
-  // const token = Vue.ls.get(ACCESS_TOKEN)
+  // const token = Vue.$ls.get(ACCESS_TOKEN)
   // if (token) {
   //   config.headers['token'] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
   // }
@@ -45,11 +46,58 @@ service.interceptors.response.use((response: any) => {
   return response.data
 }, err)
 
-const installer = {
-  vm: {},
-  install(Vue: any) {
-    Vue.use(VueAxios, service)
-  }
+/**
+ * 封装get方法，对应get请求
+ * @param {String} url [请求的url地址]
+ * @param {Object} params [请求时携带的参数]
+ */
+function get(url: string, params: {} = {}) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url, {
+        params: params
+      })
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  })
+}
+/**
+ * post方法，对应post请求
+ * @param {String} url [请求的url地址]
+ * @param {Object} params [请求时携带的参数]
+ */
+function post(url: string, params: {}) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(url, qs.stringify(params))
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  })
+}
+/**
+ * post方法，对应post请求
+ * @param {String} url [请求的url地址]
+ * @param {Object} params [请求时携带的参数]
+ */
+function postData(url: string, params: any) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(url, params)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  })
 }
 
-export { installer as VueAxios, service as axios }
+export { get, post, postData }
