@@ -1,27 +1,35 @@
 <template lang="pug">
   .content
-    .header wujianbo
-    .ha fdf
+    .header(@click="headerClick($event)") wujianbo
+      ripple(ref="ripple")
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { State, Getter, Mutation, Action, namespace } from 'vuex-class'
 import { timeFix } from '@/utils/util'
+import Ripple from '@/components/Ripple/Ripple.vue'
 
 // vuex module 命名空间
 const app = namespace('app')
 const user = namespace('user')
 
 @Component({
-  name: 'Index'
+  name: 'Index',
+  components: {
+    Ripple
+  }
 })
 export default class Index extends Vue {
+  $refs!:{
+    ripple: Ripple
+  }
   @user.State token?: string | number
   @Getter tokenB?: string | number
   @user.Action Login?: () => any
+
   async mounted() {
     // welcome
-    (this as any)
+    ;(this as any)
       .Login()
       .then((res: any) => {
         this.$notify({
@@ -31,6 +39,10 @@ export default class Index extends Vue {
         })
       })
       .catch((res: any) => {})
+  }
+
+  headerClick(event) {
+    this.$refs.ripple.reppleClick(event)
   }
 }
 </script>
@@ -42,9 +54,12 @@ export default class Index extends Vue {
   height 100%
   .header
     width 100%
-    height 100%
-    line-height 100vh
+    height 100vh
+    position relative
+    overflow hidden
+    user-select none
+    font-size 56px
     text-align center
-    color $color-A
-    font-size 32px
+    width 100%
+    line-height 100vh
 </style>
