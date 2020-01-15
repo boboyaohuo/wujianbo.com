@@ -6,7 +6,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Inject, Vue } from 'vue-property-decorator'
-import Mixin from '../../mixins/mixin'
+import Mixin from '@/mixins/mixin'
 import AsyncValidator from 'async-validator'
 
 @Component({

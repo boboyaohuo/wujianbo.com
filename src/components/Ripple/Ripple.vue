@@ -3,8 +3,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
-import classlist from './classlist.ts'
-import elementRef from './element-ref.ts'
+import classlist from './classlist'
+import elementRef from './element-ref'
 
 const startRipple = function(eventType: any, event: any) {
   let holder = event.currentTarget || event.target

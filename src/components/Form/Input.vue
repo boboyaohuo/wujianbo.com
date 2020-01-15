@@ -4,7 +4,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Inject, Watch, Emit, Vue } from 'vue-property-decorator'
-import Mixin from '@/mixins/mixin.ts'
+import Mixin from '@/mixins/mixin'
 
 @Component({
   name: 'BInput',
