@@ -3,8 +3,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
-import classlist from '@/components/helpers/classlist.ts'
-import elementRef from '@/components/helpers/element-ref.ts'
+import classlist from './classlist.ts'
+import elementRef from './element-ref.ts'
 
 const startRipple = function(eventType: any, event: any) {
   let holder = event.currentTarget || event.target
@@ -142,40 +142,36 @@ export default class Ripple extends Vue {
 }
 </script>
 <style lang="stylus" scoped>
-.ripple {
-  border-radius: inherit;
-  bottom: 0;
-  display: block;
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  top: 0;
-
+.ripple
+  border-radius inherit
+  bottom 0
+  display block
+  left 0
+  overflow hidden
+  position absolute
+  right 0
+  top 0
   // Forces webkit to properly contain content within border-radius
-  -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
-}
+  -webkit-mask-image -webkit-radial-gradient(circle, white, black)
 
-.ripple >>> .ripple-ink {
-  background-clip: padding-box;
-  background-color: #000000;
-  border-radius: 50%;
-  height: 0;
-  opacity: 0.2;
-  pointer-events: none;
-  position: absolute;
-  transform: scale(0);
-  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-  user-select: none;
-  width: 0;
+.ripple >>> .ripple-ink 
+  background-clip padding-box
+  background-color #000000
+  border-radius 50%
+  height 0
+  opacity 0.2
+  pointer-events none
+  position absolute
+  will-change transform, opacity
+  transform scale(0)
+  transition transform 0.6s ease-out, opacity 0.6s ease-out
+  user-select none
+  width 0
 
-  &.is-held {
-    opacity: 0.4;
-    transform: scale(1);
-  }
+  &.is-held
+    opacity 0.4
+    transform scale(1)
 
-  &.is-done {
-    opacity: 0!important;
-  }
-}
+  &.is-done
+    opacity 0!important
 </style>

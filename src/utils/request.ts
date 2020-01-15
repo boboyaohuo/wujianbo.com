@@ -22,8 +22,11 @@ const err = (error: any) => {
 }
 
 // request interceptor
-service.interceptors.request.use((config: Object) => {
-  console.log(config)
+service.interceptors.request.use((config: any) => {
+  // config.headers['Set-Cookie'] = 'widget_session=abc123'
+  // config.headers['SameSite'] = 'none'
+  // config.headers['Secure']
+  
   // const token = Vue.$ls.get(ACCESS_TOKEN)
   // if (token) {
   //   config.headers['token'] = token // 让每个请求携带自定义 token 请根据实际情况自行修改

@@ -1,6 +1,8 @@
 <template lang="pug">
   .content
-    .header wujianbo
+    .header
+      .title wujianbo
+      .intro 一位有理想、有道德、有文化、有纪律的前端开发工程师😁
       ripple
 </template>
 <script lang="ts">
@@ -32,7 +34,7 @@ export default class Index extends Vue {
         this.$notify({
           title: `${timeFix()}`,
           dangerouslyUseHTMLString: true,
-          message: `欢迎光临<b style="color: red;">红浪漫</b>🛀,拿好手盘楼上请！<b><p>贵宾一位!</p></b>`
+          message: `欢迎光临<b style="color: red;">红浪漫</b>🛀,拿好手牌儿楼上请！<b><p>贵宾一位!</p></b>`
         })
       })
       .catch((res: any) => {})
@@ -41,7 +43,6 @@ export default class Index extends Vue {
 </script>
 <style lang="stylus" scoped>
 @import '../../assets/style/variable.styl'
-
 .content
   width 100%
   height 100%
@@ -50,14 +51,26 @@ export default class Index extends Vue {
     height 100vh
     position relative
     overflow hidden
+    display flex
+    flex-direction column
+    justify-content center
+    color #33333f
     user-select none
-    font-size 80px
-    text-align center
-    width 100%
-    line-height 100vh
-    color #33333d
+    .title
+      font-size 80px
+      line-height 120px
+      text-align center
+    .intro
+      font-size 24px
+      line-height 50px
+      text-align center
 @media only screen and (max-width: 700px)
   .content
     .header
-      font-size 60px
+      .title
+        font-size 60px
+        line-height 90px
+      .intro
+        font-size 14px
+        line-height 40px
 </style>

@@ -14,7 +14,7 @@ export default [
   { path: '/notfound', name: 'NotFound', component: NotFound, meta: { title: '页面找不到啦' } },
   //首页
   { path: '/index', redirect: '/' },
-  { path: '/', name: 'Index', component: Index, meta: { title: '欢迎光临💂' } },
+  { path: '/', name: 'Index', component: Index, meta: { title: "吴建波的个人网站 - Wu JianBo's Personal Website" } },
   // form表单
   { path: '/form', name: 'Form', component: Form, meta: { title: 'form表单' } }
 ]
