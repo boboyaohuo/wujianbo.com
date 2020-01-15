@@ -1,7 +1,7 @@
 <template lang="pug">
   .content
-    .header(@click="headerClick($event)") wujianbo
-      ripple(ref="ripple")
+    .header wujianbo
+      ripple
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
@@ -20,9 +20,6 @@ const user = namespace('user')
   }
 })
 export default class Index extends Vue {
-  $refs!: {
-    ripple: Ripple
-  }
   @user.State token?: string | number
   @Getter tokenB?: string | number
   @user.Action Login?: () => any
@@ -40,10 +37,6 @@ export default class Index extends Vue {
       })
       .catch((res: any) => {})
   }
-
-  headerClick(event:any) {
-    this.$refs.ripple.reppleClick(event)
-  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -58,8 +51,13 @@ export default class Index extends Vue {
     position relative
     overflow hidden
     user-select none
-    font-size 56px
+    font-size 80px
     text-align center
     width 100%
     line-height 100vh
+    color #33333d
+@media only screen and (max-width: 700px)
+  .content
+    .header
+      font-size 60px
 </style>

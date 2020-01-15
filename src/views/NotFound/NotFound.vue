@@ -74,21 +74,7 @@ export default class NotFound extends Vue {}
         cursor: pointer
         &:hover
           background: #0066ff
-@media only screen and (max-width: 960px)
-  #not-found
-    .not-found
-      .not-found-404
-        h1
-          height: 240px
-          line-height: 240px
-          font-size: 240px
-        h2
-          font-size: 20px
-          .a
-            font-size: 26px
-        h3
-          font-size: 14px
-@media only screen and (max-width: 480px)
+@media only screen and (max-width: 700px)
   #not-found
     .not-found
       .not-found-404
@@ -98,8 +84,8 @@ export default class NotFound extends Vue {}
           font-size: 162px
         h2
           font-size: 16px
-          .a
-            font-size: 22px
         h3
+          font-size: 12px
+        .a
           font-size: 12px
 </style>
