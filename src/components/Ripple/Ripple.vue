@@ -156,7 +156,7 @@ export default class Ripple extends Vue {
 
 .ripple >>> .ripple-ink 
   background-clip padding-box
-  background-color #000000
+  background-color currentColor
   border-radius 50%
   height 0
   opacity 0.2
