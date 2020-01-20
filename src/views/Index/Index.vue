@@ -61,7 +61,7 @@ export default class Index extends Vue {
       line-height 120px
       text-align center
       -webkit-text-fill-color transparent
-      background-image linear-gradient(92deg, #00000f 0%,#ccccff 100%)
+      background-image linear-gradient(150deg, #000000 0%,#9999cf 100%)
       background-clip text
       animation hue 30s infinite linear
     .intro
