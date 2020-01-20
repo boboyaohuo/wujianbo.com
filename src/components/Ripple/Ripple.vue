@@ -154,7 +154,7 @@ export default class Ripple extends Vue {
   // Forces webkit to properly contain content within border-radius
   -webkit-mask-image -webkit-radial-gradient(circle, white, black)
 
-.ripple >>> .ripple-ink 
+.ripple >>> .ripple-ink
   background-clip padding-box
   background-color currentColor
   border-radius 50%
