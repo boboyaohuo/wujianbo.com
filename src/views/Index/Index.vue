@@ -1,8 +1,8 @@
 <template lang="pug">
   .content
     .header
-      .title(class="animated") wujianbo
-      .intro(class="animated fadeIn") 一位有理想、有道德、有文化、有纪律的前端开发工程师😁
+      .title wujianbo
+      .intro 一位有理想、有道德、有文化、有纪律的前端开发工程师😁
       ripple
 </template>
 <script lang="ts">
@@ -60,10 +60,6 @@ export default class Index extends Vue {
       font-size 80px
       line-height 120px
       text-align center
-      -webkit-text-fill-color transparent
-      background-image linear-gradient(150deg, #000000 0%,#9999cf 100%)
-      background-clip text
-      animation hue 30s infinite linear
     .intro
       font-size 24px
       line-height 50px
@@ -77,7 +73,4 @@ export default class Index extends Vue {
       .intro
         font-size 14px
         line-height 40px
-@keyframes hue
-  0% { filter: hue-rotate(0deg) }
-  100% { filter: hue-rotate(360deg) }
 </style>
