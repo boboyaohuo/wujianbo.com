@@ -2,7 +2,7 @@
   .content
     .header
       .title wujianbo
-      .intro 一位有理想、有道德、有文化、有纪律的前端开发工程师😁
+      .intro 快乐有很多种，遇见你是第一种。
       ripple
 </template>
 <script lang="ts">
