@@ -4,7 +4,7 @@ import qs from 'qs'
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: '',
+  baseURL: process.env.VUE_APP_API_BASE_URL,
   withCredentials: false,
   timeout: 6000 // 请求超时时间
 })
@@ -26,7 +26,7 @@ service.interceptors.request.use((config: any) => {
   // config.headers['Set-Cookie'] = 'widget_session=abc123'
   // config.headers['SameSite'] = 'none'
   // config.headers['Secure']
-  
+
   // const token = Vue.$ls.get(ACCESS_TOKEN)
   // if (token) {
   //   config.headers['token'] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
@@ -56,7 +56,7 @@ service.interceptors.response.use((response: any) => {
  */
 function get(url: string, params: {} = {}) {
   return new Promise((resolve, reject) => {
-    axios
+    service
       .get(url, {
         params: params
       })
@@ -75,7 +75,7 @@ function get(url: string, params: {} = {}) {
  */
 function post(url: string, params: {}) {
   return new Promise((resolve, reject) => {
-    axios
+    service
       .post(url, qs.stringify(params))
       .then(res => {
         resolve(res.data)
@@ -92,7 +92,7 @@ function post(url: string, params: {}) {
  */
 function postData(url: string, params: any) {
   return new Promise((resolve, reject) => {
-    axios
+    service
       .post(url, params)
       .then(res => {
         resolve(res.data)

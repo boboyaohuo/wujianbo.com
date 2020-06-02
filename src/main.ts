@@ -16,6 +16,9 @@ import '@/core/ls-use.ts'
 // 引入vue挂载filter
 import '@/utils/filter' // global filter
 
+// 环境log
+console.log(`当前环境--${process.env.NODE_ENV}--${process.env.VUE_APP_API_BASE_URL}`)
+
 // vue-lazyload init
 Vue.use(VueLazyload, {
   preLoad: 1.5,

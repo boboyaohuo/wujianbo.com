@@ -1,8 +1,8 @@
 <template lang="pug">
   .content
-    .header
+    .header(@click="getIndex")
       .title wujianbo
-      .intro 快乐有很多种，遇见你是第一种。
+      .intro {{ text }}
       ripple
 </template>
 <script lang="ts">
@@ -10,6 +10,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { State, Getter, Mutation, Action, namespace } from 'vuex-class'
 import { timeFix } from '@/utils/util'
 import Ripple from '@/components/Ripple/Ripple.vue'
+import { getIndex } from '@/api/index'
 
 // vuex module 命名空间
 const app = namespace('app')
@@ -26,6 +27,8 @@ export default class Index extends Vue {
   @Getter tokenB?: string | number
   @user.Action Login?: () => any
 
+  private text: String = ''
+
   async mounted() {
     // welcome
     ;(this as any)
@@ -38,6 +41,13 @@ export default class Index extends Vue {
         })
       })
       .catch((res: any) => {})
+    // 获取首页数据
+    this.getIndex()
+  }
+
+  private async getIndex() {
+    let res: any = await getIndex()
+    this.text = res.text
   }
 }
 </script>
