@@ -33,9 +33,9 @@ export default class Index extends Vue {
   private addText: String = ''
 
   async mounted() {
-    this.inputMark = this.$route.query.inputMark
+    ;(this as any).inputMark = this.$route.query.inputMark
     // welcome
-    let res = await this.Login()
+    let res = await (this as any).Login()
     this.$notify({
       title: `${timeFix()}`,
       dangerouslyUseHTMLString: true,

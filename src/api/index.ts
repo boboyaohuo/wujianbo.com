@@ -12,8 +12,8 @@ const api: any = {
  * @param parameter
  * @returns {*}
  */
-export const getIndex = (params: any) => {
-  return get(api.getIndex, params)
+export const getIndex = () => {
+  return get(api.getIndex)
 }
 
 /**
