@@ -4,13 +4,14 @@
       .title wujianbo
       .intro {{ text }}
       ripple
+    input.input(v-model="addText" v-on:keydown.enter="addIndex")
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { State, Getter, Mutation, Action, namespace } from 'vuex-class'
 import { timeFix } from '@/utils/util'
 import Ripple from '@/components/Ripple/Ripple.vue'
-import { getIndex } from '@/api/index'
+import { getIndex, addIndex } from '@/api/index'
 
 // vuex module 命名空间
 const app = namespace('app')
@@ -28,26 +29,32 @@ export default class Index extends Vue {
   @user.Action Login?: () => any
 
   private text: String = ''
+  private inputMark: Boolean = false
+  private addText: String = ''
 
   async mounted() {
+    this.inputMark = this.$route.query.inputMark
     // welcome
-    ;(this as any)
-      .Login()
-      .then((res: any) => {
-        this.$notify({
-          title: `${timeFix()}`,
-          dangerouslyUseHTMLString: true,
-          message: `欢迎光临<b style="color: red;">红浪漫</b>🛀,拿好手牌儿楼上请！<b><p>贵宾一位!</p></b>`
-        })
-      })
-      .catch((res: any) => {})
+    let res = await this.Login()
+    this.$notify({
+      title: `${timeFix()}`,
+      dangerouslyUseHTMLString: true,
+      message: `欢迎光临<b style="color: red;">红浪漫</b>🛀,拿好手牌儿楼上请！<b><p>贵宾一位!</p></b>`
+    })
     // 获取首页数据
     this.getIndex()
   }
 
+  // 获取text
   private async getIndex() {
     let res: any = await getIndex()
     this.text = res.text
+  }
+
+  // 添加text
+  private async addIndex() {
+    let text = this.addText
+    let res: any = await addIndex({ text })
   }
 }
 </script>
@@ -74,6 +81,8 @@ export default class Index extends Vue {
       font-size 24px
       line-height 50px
       text-align center
+  .input
+    border 1px solid #000
 @media only screen and (max-width: 700px)
   .content
     .header
