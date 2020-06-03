@@ -4,7 +4,7 @@
       .title wujianbo
       .intro {{ text }}
       ripple
-    input.input(v-model="addText" v-on:keydown.enter="addIndex")
+    input.input(v-model="addText" v-if="inputMark" v-on:keydown.enter="addIndex")
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
