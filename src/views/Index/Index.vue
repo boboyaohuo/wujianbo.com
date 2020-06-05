@@ -29,7 +29,7 @@ export default class Index extends Vue {
   @user.Action Login?: () => any
 
   private text: String = ''
-  private id: Number = NaN
+  private id: Number = 0
   private inputMark: Boolean = false
   private addText: String = ''
 
