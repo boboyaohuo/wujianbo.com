@@ -45,7 +45,7 @@ export default class Index extends Vue {
     let { id } = this
     let res: any = await getIndex({ id })
     this.text = res.data.text
-    this.id = Number(res.id)
+    this.id = Number(res.data.id)
   }
 
   // 添加text
