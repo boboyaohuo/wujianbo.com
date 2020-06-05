@@ -29,7 +29,7 @@ Vue.use(VueLazyload, {
 Vue.config.productionTip = false
 
 // api util 挂载
-Vue.prototype.$TOOL = TOOL;
+Vue.prototype.$TOOL = TOOL
 
 new Vue({
   router,
