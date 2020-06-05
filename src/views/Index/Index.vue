@@ -9,7 +9,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { State, Getter, Mutation, Action, namespace } from 'vuex-class'
-import { timeFix } from '@/utils/util'
 import Ripple from '@/components/Ripple/Ripple.vue'
 import { getIndex, addIndex } from '@/api/index'
 

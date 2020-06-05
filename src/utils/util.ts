@@ -1,4 +1,4 @@
-export default{
+export default {
   timeFix(): string {
     const time = new Date()
     const hour = time.getHours()
