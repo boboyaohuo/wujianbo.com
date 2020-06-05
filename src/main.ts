@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
+import TOOL from './utils/util'
 
 // 引入全局样式
 import '@/assets/style/index.styl'
@@ -26,6 +27,9 @@ Vue.use(VueLazyload, {
 })
 
 Vue.config.productionTip = false
+
+// api util 挂载
+Vue.prototype.$TOOL = TOOL;
 
 new Vue({
   router,
