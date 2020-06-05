@@ -37,11 +37,6 @@ export default class Index extends Vue {
     ;(this as any).inputMark = this.$route.query.inputMark
     // welcome
     let res = await (this as any).Login()
-    this.$notify({
-      title: `${timeFix()}`,
-      dangerouslyUseHTMLString: true,
-      message: `欢迎光临<b style="color: red;">红浪漫</b>🛀,拿好手牌儿楼上请！<b><p>贵宾一位!</p></b>`
-    })
     // 获取首页数据
     this.getIndex()
   }
