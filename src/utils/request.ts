@@ -61,10 +61,10 @@ function get(url: string, params: {} = {}) {
         params: params
       })
       .then(res => {
-        resolve(res.data)
+        resolve(res)
       })
       .catch(err => {
-        reject(err.data)
+        reject(err)
       })
   })
 }
@@ -78,10 +78,10 @@ function post(url: string, params: {}) {
     service
       .post(url, qs.stringify(params))
       .then(res => {
-        resolve(res.data)
+        resolve(res)
       })
       .catch(err => {
-        reject(err.data)
+        reject(err)
       })
   })
 }
@@ -95,10 +95,10 @@ function postData(url: string, params: any) {
     service
       .post(url, params)
       .then(res => {
-        resolve(res.data)
+        resolve(res)
       })
       .catch(err => {
-        reject(err.data)
+        reject(err)
       })
   })
 }

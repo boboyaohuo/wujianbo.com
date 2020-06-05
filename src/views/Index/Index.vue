@@ -44,7 +44,7 @@ export default class Index extends Vue {
   private async getIndex() {
     let { id } = this
     let res: any = await getIndex({ id })
-    this.text = res.text
+    this.text = res.data.text
     this.id = Number(res.id)
   }
 
@@ -54,7 +54,7 @@ export default class Index extends Vue {
     let res: any = await addIndex({ text })
     if (res.status === 0) {
       ;(this as any).$message({
-        message: '恭喜你，这是一条成功消息',
+        message: '感谢您添加的一条语录。😉',
         type: 'success'
       })
     }
