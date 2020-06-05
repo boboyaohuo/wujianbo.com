@@ -29,6 +29,7 @@ export default class Index extends Vue {
   @user.Action Login?: () => any
 
   private text: String = ''
+  private id: Number = NaN
   private inputMark: Boolean = false
   private addText: String = ''
 
@@ -47,14 +48,22 @@ export default class Index extends Vue {
 
   // 获取text
   private async getIndex() {
-    let res: any = await getIndex()
+    let { id } = this
+    let res: any = await getIndex({ id })
     this.text = res.text
+    this.id = Number(res.id)
   }
 
   // 添加text
   private async addIndex() {
     let text = this.addText
     let res: any = await addIndex({ text })
+    if (res.status === 0) {
+      ;(this as any).$message({
+        message: '恭喜你，这是一条成功消息',
+        type: 'success'
+      })
+    }
   }
 }
 </script>
