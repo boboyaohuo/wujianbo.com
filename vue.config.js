@@ -17,7 +17,6 @@ const assetsCDN = {
     // axios: 'axios', // 暂时注掉，目前外链时需要webpack处理 并不减少js体积
     'element-ui': 'ELEMENT'
   },
-  css: ['//cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css'],
   js: [
     '//cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js',
     '//cdn.jsdelivr.net/npm/vue-router@3.1.3/dist/vue-router.min.js',
@@ -28,7 +27,6 @@ const assetsCDN = {
 }
 
 const assetsCDN_dev = {
-  css: ['//cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css']
 }
 
 // vue.config.js
