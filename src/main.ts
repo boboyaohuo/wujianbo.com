@@ -8,6 +8,9 @@ import TOOL from './utils/util'
 // 引入全局样式
 import '@/assets/style/index.styl'
 
+// 引入主题样式
+import '@/assets/style/theme/index.css'
+
 // element-ui 按需加载 css文件在cdn引入
 import '@/core/element-ui-use.ts'
 
