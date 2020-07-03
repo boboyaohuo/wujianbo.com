@@ -81,12 +81,14 @@ const startRipple = function(eventType: any, event: any) {
 
 const handleMouseDown = function(e: any) {
   // Trigger on left click only
+  e.stopPropagation()
   if (e.button === 0) {
     startRipple(e.type, e)
   }
 }
 
 const handleTouchStart = function(e: any) {
+  e.stopPropagation()
   if (e.changedTouches) {
     for (let i = 0; i < e.changedTouches.length; ++i) {
       startRipple(e.type, e.changedTouches[i])

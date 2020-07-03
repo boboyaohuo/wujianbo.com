@@ -4,7 +4,8 @@
       .title wujianbo
       .intro {{ text }}
       ripple
-    input.input(v-model="addText" v-if="inputMark" v-on:keydown.enter="addIndex")
+      .addBtn(@click.stop="addShow") 我也要添加一条
+        ripple
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
@@ -29,11 +30,10 @@ export default class Index extends Vue {
 
   private text: String = ''
   private id: Number = 0
-  private inputMark: Boolean = false
+  private addMark: Boolean = false
   private addText: String = ''
 
   async mounted() {
-    ;(this as any).inputMark = this.$route.query.inputMark
     // welcome
     let res = await (this as any).Login()
     // 获取首页数据
@@ -48,13 +48,29 @@ export default class Index extends Vue {
     this.id = Number(res.data.id)
   }
 
+  // 打开添加窗口
+  addShow() {
+    ;(this as any)
+      .$prompt('请输入内容，以 。结束', '添加一条', {
+        inputValidator: (value: String) => {
+          if (!value) return false
+        }
+      })
+      .then(({ value }: any) => {
+        if (value) {
+          this.addIndex(value)
+        }
+      })
+      .catch(() => {})
+  }
+
   // 添加text
-  private async addIndex() {
-    let text = this.addText
+  private async addIndex(value: String) {
+    let text = value
     let res: any = await addIndex({ text })
     if (res.status === 0) {
       ;(this as any).$message({
-        message: '感谢您添加的一条语录。😉',
+        message: '感谢您添加的一条语录，经管理员审核后展示。😉',
         type: 'success'
       })
     }
@@ -71,21 +87,41 @@ export default class Index extends Vue {
     height 100vh
     position relative
     overflow hidden
-    display flex
-    flex-direction column
-    justify-content center
-    color #33333f
+    background url('../../assets/images/texture.png') #f3f3f3
     user-select none
     .title
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -100%)
       font-size 80px
       line-height 120px
       text-align center
     .intro
+      max-width 100vw
+      white-space nowrap
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, 10%)
       font-size 24px
-      line-height 50px
+      line-height 30px
       text-align center
-  .input
-    border 1px solid #000
+    .addBtn
+      position absolute
+      right 20px
+      bottom 20px
+      overflow hidden
+      padding 12px
+      color $color-B
+      font-size 15px
+      border 1px solid $color-B
+      border-radius 5px
+      cursor pointer
+      &:hover
+        color $color-C
+        border 1px solid $color-C
+        background rgba(105, 42, 27, 0.1)
 @media only screen and (max-width: 700px)
   .content
     .header
@@ -93,6 +129,9 @@ export default class Index extends Vue {
         font-size 60px
         line-height 90px
       .intro
-        font-size 14px
-        line-height 40px
+        font-size 15px
+        line-height 20px
+      .addBtn
+        font-size 12px
+        padding 8px
 </style>
