@@ -1,10 +1,9 @@
 <template lang="pug">
   .content
     .header(@click="getIndex")
-      .title wujianbo
-      .intro {{ text }}
+      .intro {{ text || '今日份的想你正在赶来的路上...' }}
       ripple
-      .addBtn(@click.stop="addShow") 我也要添加一条
+      .addBtn(v-if="!isMobile" @click.stop="addShow") 我也要添加一条
         ripple
 </template>
 <script lang="ts">
@@ -28,12 +27,15 @@ export default class Index extends Vue {
   @Getter tokenB?: string | number
   @user.Action Login?: () => any
 
-  private text: String = ''
+  private isMobile: Boolean = false
+  private getMark: Boolean = true
   private id: Number = 0
+  private text: String = ''
   private addMark: Boolean = false
   private addText: String = ''
 
   async mounted() {
+    this.isMobile = (this as any).$TOOL.isMobile()
     // welcome
     let res = await (this as any).Login()
     // 获取首页数据
@@ -42,10 +44,16 @@ export default class Index extends Vue {
 
   // 获取text
   private async getIndex() {
-    let { id } = this
-    let res: any = await getIndex({ id })
-    this.text = res.data.text
-    this.id = Number(res.data.id)
+    if (this.getMark) {
+      this.getMark = false
+      let { id } = this
+      let res: any = await getIndex({ id })
+      this.text = res.data.text
+      this.id = Number(res.data.id)
+      setTimeout(() => {
+        this.getMark = true
+      }, 1000)
+    }
   }
 
   // 打开添加窗口
@@ -89,22 +97,14 @@ export default class Index extends Vue {
     overflow hidden
     background url('../../assets/images/texture.png') #f3f3f3
     user-select none
-    .title
-      position absolute
-      top 50%
-      left 50%
-      transform translate(-50%, -100%)
-      font-size 80px
-      line-height 120px
-      text-align center
     .intro
       max-width 100vw
       white-space nowrap
       position absolute
       top 50%
       left 50%
-      transform translate(-50%, 10%)
-      font-size 24px
+      transform translate(-50%, -50%)
+      font-size 32px
       line-height 30px
       text-align center
     .addBtn
@@ -125,9 +125,6 @@ export default class Index extends Vue {
 @media only screen and (max-width: 700px)
   .content
     .header
-      .title
-        font-size 60px
-        line-height 90px
       .intro
         font-size 15px
         line-height 20px
