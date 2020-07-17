@@ -14,7 +14,12 @@ export default [
   { path: '/notfound', name: 'NotFound', component: NotFound, meta: { title: '页面找不到啦' } },
   //首页
   { path: '/index', redirect: '/' },
-  { path: '/', name: 'Index', component: Index, meta: { title: "今天也是想你的一天 - Today is also a day to miss you" } },
+  {
+    path: '/',
+    name: 'Index',
+    component: Index,
+    meta: { title: '今天也是想你的一天 - Today is also a day to miss you' }
+  },
   // form表单
   { path: '/form', name: 'Form', component: Form, meta: { title: 'form表单' } }
 ]

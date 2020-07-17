@@ -123,6 +123,7 @@ export default class Ripple extends Vue {
   }
 
   setupRipple() {
+    // 查找ref节点或父节点
     this.triggerEl = elementRef.resolve((this as any).trigger, (this as any).$el.parentElement)
     if (!this.triggerEl) {
       console.error('[UiRippleInk]: Trigger element not found.')
