@@ -2,6 +2,6 @@
 
 ### 👏Hello
 
-> I'm a coder.
+> I'm a coder on the way.
 
 🔗 https://www.wujianbo.com
