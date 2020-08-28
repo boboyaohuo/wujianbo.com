@@ -2,8 +2,8 @@
 
 ### 前端
 
-    vue-cli3脚手架 vue + typescript + vue-property-decorator + vue-class-component + axios
+    🚀vue-cli3脚手架 vue + typescript + pug + stylus + vue-property-decorator + vue-class-component + axios + prettier
 
 ### 服务端
 
-    koa-generator脚手架 pm2+koa2+mysql2+sequelize 搭建后端服务
+    🚀koa-generator脚手架 pm2 + koa2 + mysql2 + sequelize 搭建后端服务
