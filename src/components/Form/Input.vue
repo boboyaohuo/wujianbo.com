@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    input(style="border: 1px solid #000000;" ref="input" :type="type" :value="currentValue" @input="handleInput" @blur="handleBlur")
+    input(style="border: 1px solid #000000;" ref="input" :type="type" v-model="currentValue" @blur="handleBlur")
 </template>
 <script lang="ts">
 import { Component, Prop, Inject, Watch, Emit, Vue } from 'vue-property-decorator'
@@ -26,6 +26,12 @@ export default class BInput extends Vue {
     if (value) this.currentValue = value
   }
 
+  @Watch('currentValue')
+  onChangeCurrentValue(value: string): void {
+    this.hanler(value)
+    this.dispatch('BFormItem', 'form-change', value)
+  }
+
   mounted() {
     const parent: any = this.$parent
     if (parent.labelFor) this.$refs.input.id = parent.labelFor
@@ -36,12 +42,6 @@ export default class BInput extends Vue {
     return value
   }
 
-  handleInput(e: any) {
-    const value = e.target.value
-    this.currentValue = value
-    this.hanler(value)
-    this.dispatch('BFormItem', 'form-change', value)
-  }
   handleBlur() {
     this.dispatch('BFormItem', 'form-blur', this.currentValue)
   }

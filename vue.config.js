@@ -76,7 +76,7 @@ const vueConfig = {
     // 启动服务后是否打开浏览器
     open: true,
     // development server port 8000
-    port: 8000,
+    port: 8800,
     // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
     proxy: 'http://api.wujianbo.com/'
   },
