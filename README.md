@@ -1,7 +1,7 @@
 
 ### 👏Hello
 
-> I'm a coder.
+> I'm a programmer.
 
 🔗 https://www.wujianbo.com
 
