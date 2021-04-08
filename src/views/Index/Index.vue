@@ -2,7 +2,6 @@
   .content
     .header(@click="getIndex")
       .intro {{ text || '今日份的想你正在赶来的路上...' }}
-      ripple
       .addBtn(v-if="!isMobile" @click.stop="addShow") 我也要添加一条
         ripple
 </template>
@@ -97,6 +96,7 @@ export default class Index extends Vue {
     overflow hidden
     background url('../../assets/images/texture.png') #f3f3f3
     user-select none
+    cursor pointer
     .intro
       max-width 100vw
       white-space nowrap
