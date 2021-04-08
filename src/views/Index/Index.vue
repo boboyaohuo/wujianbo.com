@@ -51,7 +51,7 @@ export default class Index extends Vue {
       this.id = Number(res.data.id)
       setTimeout(() => {
         this.getMark = true
-      }, 1000)
+      }, 10)
     }
   }
 
