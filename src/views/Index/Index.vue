@@ -2,8 +2,6 @@
   .content
     .header(@click="getIndex")
       .intro {{ text || '今日份的想你正在赶来的路上...' }}
-      .addBtn(v-if="!isMobile" @click.stop="addShow") 我也要添加一条
-        ripple
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
