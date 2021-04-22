@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
 import TOOL from './utils/util'
+import './assets/js/live2d.min.js'
 
 // 引入全局样式
 import '@/assets/style/index.styl'

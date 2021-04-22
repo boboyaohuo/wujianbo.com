@@ -2,6 +2,7 @@
   .content
     .header(@click="getIndex")
       .intro {{ text || '今日份的想你正在赶来的路上...' }}
+    canvas.live2d#cat(:width="280" :height="250")
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
@@ -30,6 +31,12 @@ export default class Index extends Vue {
   private text: String = ''
   private addMark: Boolean = false
   private addText: String = ''
+  private model: Object = {
+    blackCat:
+      'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-hijiki/assets/hijiki.model.json',
+    whiteCat:
+      'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-tororo/assets/tororo.model.json'
+  }
 
   async mounted() {
     this.isMobile = (this as any).$TOOL.isMobile()
@@ -37,6 +44,7 @@ export default class Index extends Vue {
     let res = await (this as any).Login()
     // 获取首页数据
     this.getIndex()
+    ;(window as any).loadlive2d('cat', Math.random() > 0.5 ? (this as any).model.blackCat : (this as any).model.whiteCat)
   }
 
   // 获取text
@@ -87,12 +95,18 @@ export default class Index extends Vue {
 .content
   width 100%
   height 100%
+  background url('../../assets/images/texture.png') #f3f3f3
+  .live2d
+    position fixed
+    right 0
+    bottom 0
+    z-index 0
   .header
     width 100%
     height 100vh
     position relative
+    z-index 10
     overflow hidden
-    background url('../../assets/images/texture.png') #f3f3f3
     user-select none
     cursor pointer
     .intro
