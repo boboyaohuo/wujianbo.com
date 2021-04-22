@@ -44,7 +44,10 @@ export default class Index extends Vue {
     let res = await (this as any).Login()
     // 获取首页数据
     this.getIndex()
-    ;(window as any).loadlive2d('cat', Math.random() > 0.5 ? (this as any).model.blackCat : (this as any).model.whiteCat)
+    ;(window as any).loadlive2d(
+      'cat',
+      Math.random() > 0.5 ? (this as any).model.blackCat : (this as any).model.whiteCat
+    )
   }
 
   // 获取text
