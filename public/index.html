@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-orientation" content="portrait" />
+
+    <!-- 禁止缓存 start -->
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- 禁止缓存 end -->
+
+    <!-- 清除默认格式 start -->
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <!-- 清除默认格式 end -->
+
     <meta name="format-detection" content="telephone=no" />
     <meta name="keywords" content="吴建波,wujianbo,波波要火,boboyaohuo,今天也是想你的一天,想你,今天,想你的一天" />
     <meta name="description" content="今天也是想你的一天 - Today is also a day to miss you" />
     <title>今天也是想你的一天 - Today is also a day to miss you</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- require cdn assets css -->
+    <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" />
+    <% } %>
   </head>
-  <!-- require cdn assets css -->
-  <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
-  <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" />
-  <% } %>
   <body>
-    <h1 style="display: none;">今天也是想你的一天</h1>
-    <div id="app"></div>
+    <noscript>
+      <strong>很抱歉，您的浏览器没有启用Javascript或版本过低，请更换浏览器。</strong>
+      <strong>We're sorry but it doesn't work properly without JavaScript enabled.</strong>
+    </noscript>
+    <div id="app">
+    </div>
     <!-- require cdn assets js -->
     <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
     <script type="text/javascript" src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
     <% } %>
-    <!-- built files will be auto injected -->
   </body>
   <script src="https://cdn.jsdelivr.net/npm/@cxyxc/live2d@0.1.0/dist/live2d.min.js"></script>
 </html>

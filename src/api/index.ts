@@ -1,26 +1,16 @@
-import { get, postData } from '@/utils/request'
+import Service from '@/utils/request'
 
-const api: any = {
-  // 获取首页数据
-  getIndex: 'getIndex',
-  // 增加首页数据
-  addIndex: 'addIndex'
+// api
+export enum Api {
+  // 获取险种详情
+  getIndex = '/getIndex'
 }
 
-/**
- * 获取首页数据
- * @param parameter
- * @returns {*}
- */
-export const getIndex = (params: any) => {
-  return get(api.getIndex, params)
-}
-
-/**
- * 增加首页数据
- * @param parameter
- * @returns {*}
- */
-export const addIndex = (params: any) => {
-  return postData(api.addIndex, params)
+// 获取详情
+export function getIndex(params: object) {
+  return Service({
+    url: Api.getIndex,
+    method: 'GET',
+    params
+  })
 }

@@ -1,0 +1,78 @@
+@import "./theme"; //引入主题配置
+
+theme($key, $value, args...)
+  // 默认样式（任意选择一个主题即可注意要和下面的默认主题一致）(可选)
+  // {$key}: dx[$value]
+  for item in themeList {
+    // 判断html的data-theme的属性值，{}是Stylus插值
+    [data-theme = {item.name}] & {
+      // 这里的item可以当作一个对象，item[$value]可表示为：对象名.属性
+      {$key}: item[$value] args !important
+    }
+  }
+
+
+// 不换行
+no-wrap()
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+
+// 几行省略号
+line-clamp($line)
+  text-overflow: ellipsis
+  overflow: hidden
+  display:-webkit-box
+  -webkit-line-clamp: $line
+  -webkit-box-orient: vertical
+  word-break: break-all
+
+// 扩展点击区域
+extend-click()
+  position: relative
+  &:before
+    content: ''
+    position: absolute
+    top: -10px
+    left: -10px
+    right: -10px
+    bottom: -10px
+
+// a标签四状态颜色
+a-hover($color)
+  &:hover
+  &:active
+  &:link
+  &:visited
+    color: $color
+    text-decoration: none
+
+// wrap标题样式
+wrap-title()
+  color #222222
+  font-size 18px
+  font-weight bold
+  text-align center
+  height 60px
+  line-height 60px
+  position relative
+  &:before
+    content ''
+    position absolute
+    width 3px
+    height 13px
+    border-radius 1px
+    theme('background', bg1)
+    left 50%
+    top 50%
+    transform translate(-48px, -50%) skewY(10deg)
+  &:after
+    content ''
+    position absolute
+    width 3px
+    height 13px
+    border-radius 1px
+    theme('background', bg1)
+    left 50%
+    top 50%
+    transform translate(44px, -50%) skewY(10deg)
