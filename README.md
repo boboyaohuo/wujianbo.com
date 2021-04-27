@@ -1,8 +1,8 @@
 # insranceDetail
 
-- 使用vue-cli4 构建较完整的 vue3.0移动端H5项目
+- 使用vue-cli4 构建
 
-- 基于vue3.0 + vue-router4.0 + axios + vant3.0 + webpack + TS + stylus + eslint + prettier
+- 基于vue3.0 + vue-router4.0 + axios + webpack + TS + stylus + eslint + prettier
 
 - 开发环境 nodejs v12.14.0 , yarn 1.21.1
 
@@ -49,7 +49,7 @@ src
 |      ├─ index.styl  # 公共样式导入入口
 |      ├─ reset.styl  # 全局重置样式
 |      ├─ mixin.styl  # mixin
-|      └─ theme.styl  # 主题样式 dx || xbb
+|      └─ theme.styl  # 主题样式
 |
 |- api  # 请求相关目录
 |
@@ -59,8 +59,7 @@ src
 | 
 |- utils # 工具类
 |   ├─ request.js         # 封装axios
-|   ├─ jsBridge.js        # 封装jsBridge，返回Promise
-|   └─ util.js            # 具体工具方法
+|   └─ mitt.js            # Eventmitter 合集
 |
 |- router # 存放路由目录
 |   ├─ index.js           # 主入口
@@ -93,18 +92,13 @@ src
 * 全局样式写在`reset.styl`中
 * 主题样式写在`theme.styl`中，引用时需使用mixin方法
 
-##### 3. jsBridge封装
+##### 3. jsBridge封装（delete）
 
 * hybridApp交互函数已封装，相关方法请写在jsBridge.ts中进行引用使用，禁止直接调用交互函数
 
 ##### 4. axios封装
     
-* axios封装出 dxService() 及 xbbService() 两种请求方法，具体method和data或params须开发者自己分辨
-
-##### 5. share封装
-
-* 分享方法已封装到share.ts，有 微信分享，app分享两种，会自动判断，若信息缺失，会导致分享配置错误，需注意
-* 微信分享有wxSuccess和wxFail两种分享回调
+* axios封装出 Service()，具体method和data或params须开发者自己分辨
  
 ## ✅开发编码相关约定
 
@@ -126,4 +120,4 @@ src
 
 ##### 4. 提交代码前 必须先解决eslint的警告和报错
 
-##### 5. 两个及以上的页面用到相同的组件或功能，应考虑是否封装，是否使用vue的mixin，避免代码重复copy
+##### 5. 两个及以上的页面用到相同的组件或功能，应考虑是否封装，是否使用hooks，避免代码重复copy
