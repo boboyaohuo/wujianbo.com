@@ -1,5 +1,5 @@
 <template lang="pug">
-.content
+.content(:style="{backgroundColor: color}")
   .header(@click="get")
     .intro {{ text }}
   canvas.live2d#cat(:width="280" :height="250")
@@ -7,12 +7,13 @@
 <script lang="ts">
 declare const window: Window & { loadlive2d: any }
 import { getIndex } from '@/api/index'
-import { onMounted, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 export default {
   setup() {
     const text = ref('今日份的想你正在赶来的路上...')
     const id = ref(0)
     const getMark = ref(false)
+    const color = ref(`rgba(${random()},${random()},${random()}, .1)`)
     const model = {
       blackCat:
         'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-hijiki/assets/hijiki.model.json',
@@ -20,7 +21,8 @@ export default {
         'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-tororo/assets/tororo.model.json'
     }
 
-    onMounted(() => {
+    onMounted(async () => {
+      await nextTick()
       window.loadlive2d('cat', Math.random() > 0.5 ? model.blackCat : model.whiteCat)
     })
 
@@ -28,6 +30,7 @@ export default {
       if (!getMark.value) {
         getMark.value = true
         const res: any = await getIndex({ id: id.value })
+        color.value = `rgba(${random()},${random()},${random()}, .1)`
         text.value = res.data.text
         id.value = Number(res.data.id)
         setTimeout(() => {
@@ -38,23 +41,29 @@ export default {
     get()
     return {
       text,
+      color,
 
       get
     }
   }
+}
+function random() {
+  const randomNumber: number = Math.floor(Math.random() * 256)
+  return randomNumber
 }
 </script>
 <style lang="stylus" scoped>
 .content
   width 100%
   height 100%
-  background url('~assets/images/texture.png') #f3f3f3
+  transition background 0.3s linear
   .live2d
     position fixed
     right 0
     bottom 0
     z-index 0
   .header
+    background url('~assets/images/texture.png')
     width 100%
     height 100vh
     position relative
