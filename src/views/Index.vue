@@ -11,7 +11,7 @@ import { nextTick, onMounted, ref } from 'vue'
 export default {
   setup() {
     const text = ref('今日份的想你正在赶来的路上...')
-    const id = ref(0);
+    const id = ref(0)
     const getMark = ref(false)
     const color = ref(`rgba(${random()},${random()},${random()}, .1)`)
     const model = {
