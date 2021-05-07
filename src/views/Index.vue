@@ -5,7 +5,6 @@
   canvas.live2d#cat(:width="280" :height="250")
 </template>
 <script lang="ts">
-declare const window: Window & { loadlive2d: any }
 import { getIndex } from '@/api/index'
 import { nextTick, onMounted, ref } from 'vue'
 export default {
