@@ -7,7 +7,8 @@
     "serve": "vue-cli-service serve",
     "build:dev": "vue-cli-service build --mode dev",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "npx husky install"
   },
   "lint-staged": {
     "src/**": [
