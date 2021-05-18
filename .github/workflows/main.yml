@@ -17,8 +17,7 @@ jobs:
       uses: actions/setup-node@master
     - run: npm install # 安装第三方包
     - run: npm run build # 打包
-    - run: cd dist # 进入打包结果
-    - run: tar -zcvf release.tgz dist/* # 把dist里文件，打包压缩为release.tgz
+    - run: cd dist && tar -zcvf release.tgz * # 把dist里文件，打包压缩为release.tgz
 
      # 第三步：发布 Release
     - name: Create Release # 创建Release，可以在仓库看到一个个版本
