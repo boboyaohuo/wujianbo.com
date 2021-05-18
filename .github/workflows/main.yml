@@ -17,8 +17,7 @@ jobs:
       uses: actions/setup-node@master
     - run: npm install # 安装第三方包
     - run: npm run build # 打包
-    - run: cd dist
-    - run: tar -zcvf release.tgz *
+    - run: tar -zcvf release.tgz /dist/*
       # 把dist等文件，打包压缩为release.tgz
 
      # 第三步：发布 Release
