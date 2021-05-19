@@ -2,7 +2,7 @@
 
 - 使用vue-cli4 构建
 
-- 基于vue3.0 + vue-router4.0 + axios + webpack + TS + stylus + eslint + prettier
+- 基于vue3.0 + vue-router4.0 + axios + webpack + TS + stylus + eslint + prettier + husky + lint-staged + github action
 
 - 开发环境 nodejs v12.14.0 , yarn 1.21.1
 
@@ -38,9 +38,14 @@ yarn lint
 ## ✅主要目录结构
 
 ```
+.github
+├─ wockflows
+|  └─ main.yml    # github action脚本
+.husky
+└─ pre-commit     # push前检查
 public
-├─ favicon.ico   # 网站图标
-├─ index.html    # 入口页面
+├─ favicon.ico    # 网站图标
+├─ index.html     # 入口页面
 |
 src
 |- assets  # 静态资源目录
@@ -92,11 +97,7 @@ src
 * 全局样式写在`reset.styl`中
 * 主题样式写在`theme.styl`中，引用时需使用mixin方法
 
-##### 3. jsBridge封装（delete）
-
-* hybridApp交互函数已封装，相关方法请写在jsBridge.ts中进行引用使用，禁止直接调用交互函数
-
-##### 4. axios封装
+##### 3. axios封装
     
 * axios封装出 Service()，具体method和data或params须开发者自己分辨
  
