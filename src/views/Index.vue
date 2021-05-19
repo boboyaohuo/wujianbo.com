@@ -5,10 +5,11 @@
   canvas.live2d#cat(:width="280" :height="250")
 </template>
 <script lang="ts">
-import { getIndex } from '@/api/index'
 import { nextTick, onMounted, ref } from 'vue'
+import { useStore } from 'vuex'
 export default {
   setup() {
+    const store = useStore()
     const text = ref('今日份的想你正在赶来的路上...')
     const id = ref(0)
     const getMark = ref(false)
@@ -28,7 +29,7 @@ export default {
     const get = async () => {
       if (!getMark.value) {
         getMark.value = true
-        const res: any = await getIndex({ id: id.value })
+        const res: any = await store.dispatch('getIndex', id.value)
         color.value = `rgba(${random()},${random()},${random()}, .1)`
         text.value = res.data.text
         id.value = Number(res.data.id)
