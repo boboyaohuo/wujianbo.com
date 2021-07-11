@@ -9,6 +9,12 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/Index.vue'),
     meta: {}
   },
+  {
+    path: '/form',
+    name: 'Form',
+    component: () => import('@/views/Form.vue'),
+    meta: {}
+  },
   { path: '/:pathMatch(.*)*', name: 'not-found', redirect: '/' }
 ]
 
