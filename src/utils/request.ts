@@ -2,6 +2,7 @@ import axios from 'axios'
 // create an axios instance
 const Service = axios.create({
   baseURL: process.env.VUE_APP_API_URL as string, // url = base api url + request url
+  withCredentials: true,
   timeout: 10000 // request timeout
 })
 
