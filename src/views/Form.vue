@@ -38,7 +38,7 @@ export default {
   setup() {
     const data = ref({})
     const tdCookie = ref('3286474926')
-    const sessionId = ref('819e370ee9444ea4aa5746d7c1142f96')
+    const sessionId = ref(localStorage.getItem('sessionId'))
 
     const get = async () => {
       const res = await getLatestOrder({
@@ -51,6 +51,7 @@ export default {
     const reset = () => {
       document.cookie = `td_cookie=${tdCookie.value}`
       document.cookie = `sessionId=${sessionId.value}`
+      localStorage.setItem('sessionId', sessionId.value || '')
       get()
     }
 
