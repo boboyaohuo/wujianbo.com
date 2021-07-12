@@ -14,6 +14,9 @@
       .title 币种
       .text {{ item.symbol }}
     .item
+      .title 开仓
+      .text {{ item.desc }}
+    .item
       .title 杠杆倍数
       .text {{ item.leverage }}
     .item
