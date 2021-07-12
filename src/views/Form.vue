@@ -1,6 +1,8 @@
 <template lang="pug">
 .page
   .form
+    .cookie id:
+      input(placeholder='请输入' v-model='id')
     .cookie td_cookie:
       input(placeholder='请输入' v-model='tdCookie')
     .sessionId sessionId:
@@ -37,12 +39,13 @@ import { getLatestOrder } from '@/api/index'
 export default {
   setup() {
     const data = ref({})
+    const id = ref(localStorage.getItem('id') || 35)
     const tdCookie = ref('3286474926')
     const sessionId = ref(localStorage.getItem('sessionId'))
 
     const get = async () => {
       const res = await getLatestOrder({
-        id: 24,
+        id: id.value,
         tradeTime: 12938129
       })
       data.value = res.data.positions
@@ -52,6 +55,7 @@ export default {
       document.cookie = `td_cookie=${tdCookie.value}`
       document.cookie = `sessionId=${sessionId.value}`
       localStorage.setItem('sessionId', sessionId.value || '')
+      localStorage.setItem('id', String(id.value) || '')
       get()
     }
 
@@ -60,6 +64,7 @@ export default {
     }, 2000)
 
     return {
+      id,
       tdCookie,
       sessionId,
       data,

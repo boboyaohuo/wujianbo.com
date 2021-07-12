@@ -1,4 +1,4 @@
-import { Service, CookieService } from '@/utils/request'
+import Service from '@/utils/request'
 
 // api
 export enum Api {
@@ -19,7 +19,7 @@ export function getIndex(params: object) {
 
 // 获取详情
 export function getLatestOrder(params: object) {
-  return CookieService({
+  return Service({
     url: Api.getLatestOrder,
     method: 'POST',
     params
