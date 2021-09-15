@@ -33,6 +33,11 @@ npm run lint
 # or
 yarn lint
 
+# 执行plop，生成vue模版文件
+npm run new
+# or
+yarn new
+
 ```
 
 ## ✅主要目录结构
@@ -42,11 +47,13 @@ yarn lint
 ├─ wockflows
 |  └─ main.yml    # github action脚本
 .husky
-└─ pre-commit     # push前检查
+├─ pre-commit     # push前检查
 public
 ├─ favicon.ico    # 网站图标
 ├─ index.html     # 入口页面
-|
+template
+├─ index.hbs      # plop自动化模版
+├─ index.js       # plop生成器脚本
 src
 |- assets  # 静态资源目录
 |  ├─ images      # 本地图片
@@ -80,6 +87,7 @@ src
 ├─ babel.config.js    # babel常用配置
 ├─ vue.config.js      # vue常用配置项
 ├─ package.json       # 依赖
+├─ plopfile.js        # plop自动化
 ├─ postcss.config.js  # 预处理配置
 └─ README.md          # 开发须知
 
