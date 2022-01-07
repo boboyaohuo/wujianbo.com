@@ -21,7 +21,11 @@ export default {
       loading.value = false
       fileRef.value = null
       if (res.status === 0) {
-        window.open(res.data.output.url)
+        const link = document.createElement('a')
+        link.style.display = 'none'
+        link.target = '_blank'
+        link.href = res.data.output.url
+        link.click()
       } else {
         alert(res.data.message)
       }
