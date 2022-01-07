@@ -3,7 +3,7 @@ import axios from 'axios'
 const Service = axios.create({
   baseURL: process.env.VUE_APP_API_URL as string, // url = base api url + request url
   withCredentials: true,
-  timeout: 10000 // request timeout
+  timeout: 120000 // request timeout
 })
 
 // request拦截器 request interceptor
