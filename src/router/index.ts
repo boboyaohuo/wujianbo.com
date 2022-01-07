@@ -15,6 +15,12 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/Form.vue'),
     meta: {}
   },
+  {
+    path: '/tinify',
+    name: 'Tinify',
+    component: () => import('@/views/Tinify.vue'),
+    meta: {}
+  },
   { path: '/:pathMatch(.*)*', name: 'not-found', redirect: '/' }
 ]
 

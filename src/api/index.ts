@@ -5,7 +5,9 @@ export enum Api {
   // 获取险种详情
   getIndex = '/getIndex',
   // 获取349
-  getLatestOrder = '/getLatestOrder'
+  getLatestOrder = '/getLatestOrder',
+  // 获取tinify
+  postTinify = '/postTinify'
 }
 
 // 获取详情
@@ -23,5 +25,17 @@ export function getLatestOrder(params: object) {
     url: Api.getLatestOrder,
     method: 'POST',
     params
+  })
+}
+
+// 获取tinify
+export function postTinify(data: object) {
+  return Service({
+    url: Api.postTinify,
+    method: 'POST',
+    headers: {
+      ['Content-Type']: 'multipart/form-data'
+    },
+    data
   })
 }
