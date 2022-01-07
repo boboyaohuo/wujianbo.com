@@ -35,7 +35,7 @@ export default {
       // 更名
       const fileName = localStorage.getItem('uuid') || uuidv4()
       localStorage.setItem('uuid', fileName)
-      const newFile = new File([file], `${fileName}.${file.name.split('.')[1]}`, { type: file.type })
+      const newFile = new File([file], `${fileName}.${file.type.split('/')[1]}`, { type: file.type })
       loading.value = true
 
       // 拼入formData 请求
