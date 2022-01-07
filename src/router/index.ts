@@ -19,7 +19,9 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/tinify',
     name: 'Tinify',
     component: () => import('@/views/Tinify.vue'),
-    meta: {}
+    meta: {
+      title: '波波牌-Tinify'
+    }
   },
   { path: '/:pathMatch(.*)*', name: 'not-found', redirect: '/' }
 ]
