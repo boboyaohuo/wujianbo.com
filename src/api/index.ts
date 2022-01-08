@@ -33,9 +33,6 @@ export function postTinify(data: object) {
   return Service({
     url: Api.postTinify,
     method: 'POST',
-    headers: {
-      ['Content-Type']: 'multipart/form-data'
-    },
     data
   })
 }
