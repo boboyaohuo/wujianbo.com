@@ -1,7 +1,8 @@
 <template lang="pug">
 .page
-  label(for="input" v-if='!loading') 点击上传图片
+  label(for="input" v-if='loading === Status.LOADING') 点击上传图片
     input(id="input" ref="fileRef" type='file' accept="image/*" placeholder='请输入' style='display: none;' @change="fileChange")
+  label(v-else-if="loading === Status.UPLOAD") 正在上传，请稍等...
   label(v-else) 正在压缩，请稍等...
   a(:href="href" v-if="href" target="_blank") 压缩后图片地址(点击打开)：{{href}}
 </template>
@@ -12,9 +13,16 @@ import { v4 as uuidv4 } from 'uuid'
 import upload from '@/utils/upload'
 export default {
   setup() {
+    enum Status {
+      LOADING,
+      UPLOAD,
+      COMPRESS
+    }
+
     const fileRef = ref()
-    const href = ref('')
-    const loading = ref(false)
+    const href = ref<string>('')
+    const loading = ref<number>(0)
+
     const fileChange = async () => {
       if (fileRef.value.files?.length === 0) return
       const file = fileRef.value.files[0]
@@ -39,13 +47,16 @@ export default {
       const fileName = localStorage.getItem('uuid') || uuidv4()
       localStorage.setItem('uuid', fileName)
       const newFile = new File([file], `${fileName}.${file.type.split('/')[1]}`, { type: file.type })
-      loading.value = true
 
       try {
         // 上传文件
+        loading.value = Status.UPLOAD
         const url = await upload(newFile)
+
         // 请求nodejs tinify代理
+        loading.value = Status.COMPRESS
         const res = await postTinify({ url })
+
         // 压缩后图片弹窗
         if (res.status === 0) {
           href.value = res.data.output.url
@@ -57,11 +68,11 @@ export default {
       }
 
       // 重置loading
-      loading.value = false
+      loading.value = Status.LOADING
       fileRef.value = null
     }
 
-    return { fileChange, fileRef, loading, href }
+    return { fileChange, fileRef, loading, href, Status }
   }
 }
 </script>
