@@ -6,12 +6,13 @@
 </template>
 <script lang="ts">
 import { nextTick, onMounted, ref } from 'vue'
-import { useStore } from 'vuex'
+import { getIndexList } from '@/api/index'
 export default {
   setup() {
-    const store = useStore()
     const text = ref('今日份的想你正在赶来的路上...')
-    const id = ref(0)
+    const id = ref<number>(-1)
+    const idArray = ref<Array<string | number>>([])
+    const textArray = ref([])
     const getMark = ref(false)
     const color = ref(`rgba(${random()},${random()},${random()}, .1)`)
     const model = {
@@ -22,23 +23,37 @@ export default {
     }
 
     onMounted(async () => {
+      const res: any = await getIndexList()
+      textArray.value = res.data.map((item: any) => item.text)
       await nextTick()
-      window.loadlive2d('cat', Math.random() > 0.5 ? model.blackCat : model.whiteCat)
+      window.loadlive2d('cat', model.whiteCat)
+      get()
     })
 
     const get = async () => {
       if (!getMark.value) {
         getMark.value = true
-        const res: any = await store.dispatch('getIndex', id.value)
+        randomNumber()
         color.value = `rgba(${random()},${random()},${random()}, .1)`
-        text.value = res.data.text
-        id.value = Number(res.data.id)
+        text.value = textArray.value[id.value]
         setTimeout(() => {
           getMark.value = false
         }, 10)
       }
     }
-    get()
+
+    const randomNumber = () => {
+      if (idArray.value.length === textArray.value.length) {
+        idArray.value = []
+      }
+      id.value = Math.floor(Math.random() * textArray.value.length)
+      if (idArray.value.includes(id.value)) {
+        randomNumber()
+      } else {
+        idArray.value.push(id.value)
+      }
+    }
+
     return {
       text,
       color,
@@ -72,15 +87,14 @@ function random() {
     user-select none
     cursor pointer
     .intro
-      max-width 100vw
-      white-space nowrap
+      width 100vw
       position absolute
       top 45%
       left 50%
       transform translate(-50%, -50%)
       color #333
       font-size 10px
-      line-height 20px
+      line-height 22px
       text-align center
 @media only screen and (max-width: 900px)
   .content
