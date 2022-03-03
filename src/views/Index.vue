@@ -7,9 +7,12 @@
 <script lang="ts">
 import { nextTick, onMounted, ref } from 'vue'
 import { getIndexList } from '@/api/index'
+import { useRoute, useRouter } from 'vue-router'
 export default {
   setup() {
-    const text = ref('今日份的想你正在赶来的路上...')
+    const route = useRoute()
+    const router = useRouter()
+    const text = ref(route.query.text ? '' : '今日份的想你正在赶来的路上...')
     const id = ref<number>(-1)
     const idArray = ref<Array<string | number>>([])
     const textArray = ref([])
@@ -26,8 +29,12 @@ export default {
       const res: any = await getIndexList()
       textArray.value = res.data.map((item: any) => item.text)
       await nextTick()
-      window.loadlive2d('cat', model.whiteCat)
-      get()
+      window.loadlive2d('cat', Math.random() > 0.5 ? model.whiteCat : model.blackCat)
+      if (typeof route.query.text === 'string') {
+        text.value = route.query.text
+      } else {
+        get()
+      }
     })
 
     const get = async () => {
@@ -36,6 +43,7 @@ export default {
         randomNumber()
         color.value = `rgba(${random()},${random()},${random()}, .1)`
         text.value = textArray.value[id.value]
+        router.replace({ name: 'Index', query: { text: text.value } })
         setTimeout(() => {
           getMark.value = false
         }, 10)
