@@ -29,11 +29,15 @@ export default {
       const res: any = await getIndexList()
       textArray.value = res.data.map((item: any) => item.text)
       await nextTick()
-      window.loadlive2d('cat', Math.random() > 0.5 ? model.whiteCat : model.blackCat)
       if (typeof route.query.text === 'string') {
         text.value = route.query.text
       } else {
         get()
+      }
+      try {
+        window.loadlive2d('cat', Math.random() > 0.5 ? model.whiteCat : model.blackCat)
+      } catch (error) {
+        console.log(error)
       }
     })
 
