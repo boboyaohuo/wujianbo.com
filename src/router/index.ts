@@ -23,6 +23,14 @@ export const routes: Array<RouteRecordRaw> = [
       title: '波波牌-Tinify'
     }
   },
+  {
+    path: '/wedding',
+    name: 'Weeding',
+    component: () => import('@/views/Wedding.vue'),
+    meta: {
+      title: '婚礼海报'
+    }
+  },
   { path: '/:pathMatch(.*)*', name: 'not-found', redirect: '/' }
 ]
 

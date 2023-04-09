@@ -1,4 +1,4 @@
-const viewGenerator = require('./template/index');
-module.exports = (plop) => {
-  plop.setGenerator('view', viewGenerator);
-};
+const viewGenerator = require('./template/index')
+module.exports = plop => {
+  plop.setGenerator('view', viewGenerator)
+}
